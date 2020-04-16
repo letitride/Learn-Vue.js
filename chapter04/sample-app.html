@@ -272,7 +272,19 @@
       },
       {
         path: '/users/new',
-        component: UserCreate
+        component: UserCreate,
+        beforeEnter: function(to, from, next){
+          console.log("new")
+          if(!Auth.loggedIn()){
+            next({
+              path: '/login',
+              query: {redirect: to.fullPath}
+            })
+          }
+          else{
+            next()
+          }
+        }
       },
       {
         path: '/users/:userId',
@@ -285,6 +297,7 @@
       {
         path: '/logout',
         beforeEnter: function(to, from, next){
+          console.log("logout")
           Auth.logout()
           next('/')
         }
