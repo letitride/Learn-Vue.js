@@ -1,0 +1,54 @@
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<div id="parent">
+  <header-component class="heder">
+    <h1 slot="header">ここから<div>div要素も含めて</div>ここまで。</h1>
+  </header-component>
+  <content-component class="content">
+    <ul slot="content">
+      <li>Scala</li>
+      <li>Vue</li>
+      <li>Go</li>
+    </ul>
+  </content-component>
+</div>
+
+<script>
+  var hederTemplate = `
+    <div><slot name="header">No title</slot></div>
+  `
+
+  var contentTemplate = `
+    <div><slot name="content">No content</slot></div>
+  `
+
+  Vue.component('header-component',{
+    template: '<div><slot name="header">No title</slot></div>'
+  })
+
+  Vue.component('content-component',{
+    template: contentTemplate
+  })
+
+  new Vue({
+    el: "#parent"
+  })
+
+</script>
+
+<style>
+.header h1{
+  width: 100%;
+  height: 30px;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  padding: 30px 15px;
+}
+.content li {
+  width: 100%;
+  height: 30px;
+  padding: 30px 15px;
+  background-color: white;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+}
+</style>
