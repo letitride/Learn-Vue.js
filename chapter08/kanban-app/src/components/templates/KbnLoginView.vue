@@ -10,16 +10,15 @@ import KbnLoginForm from '@/components/molecules/KbnLoginForm.vue'
 
 export default {
   name: 'KbnLoginView',
-  
   components: {
     KbnLoginForm
   },
 
   methods: {
-    handleLogin( authInfo ){
+    handleLogin (authInfo) {
       return this.$store.dispatch('login', authInfo)
         .then(() => {
-          this.$route.push({ path: '/'})
+          this.$router.push({ path: '/' })
         })
         .catch(err => this.throwReject(err))
     },
