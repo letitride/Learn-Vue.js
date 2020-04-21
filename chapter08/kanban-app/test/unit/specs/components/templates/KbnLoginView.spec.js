@@ -13,6 +13,7 @@ describe('KbnLoginView', () => {
   let LoginFormComponentStub
 
   const triggerLogin = (loginView, target) => {
+    // 子コンポーネントを返す
     const loginForm = loginView.find(target)
     loginForm.vm.onlogin('foo@domain.com', '12345678')
   }
@@ -53,8 +54,10 @@ describe('KbnLoginView', () => {
       })
 
       it('ボードページにリダイレクトすること', done => {
+        // storeのloginメソッドを成功させる ($store.dispatch('login', authInfo))
         actions.login.resolves()
         triggerLogin(loginView, LoginFormComponentStub)
+
         loginView.vm.$nextTick(() => {
           expect($router.push.called).to.equal(true)
           expect($router.push.args[0][0].path).to.equal('/')
@@ -72,6 +75,7 @@ describe('KbnLoginView', () => {
           store,
           localVue
         })
+        // throwReject をwatchする
         sinon.spy(loginView.vm, 'throwReject')
       })
 
