@@ -179,6 +179,7 @@ describe('KbnLoginForm', () => {
 
       describe('reject', () => {
         it('rejectされること', done => {
+          // スタブから例外を吐く
           onloginStub.rejects(new Error('login error!'))
 
           loginForm.find('button').trigger('click')

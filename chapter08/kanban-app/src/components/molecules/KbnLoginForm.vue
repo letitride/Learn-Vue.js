@@ -8,7 +8,7 @@
         type="text"
         autocomplete="off"
         placeholder="例: kanban@domain.com"
-        @focus="resetError()">
+        @focus="resetError">
       <ul class="validation-errors">
         <li v-if="!validation.email.format">メールアドレスの形式が不正です。</li>
         <li v-if="!validation.email.required">メールアドレスが入力されていません。</li>
@@ -22,7 +22,7 @@
         type="password"
         autocomplete="off"
         placeholder="例: xxxxxxxxx"
-        @focus="resetError()">
+        @focus="resetError">
       <ul class-validation-errors>
         <li v-if="!validation.password.required">パスワードを入力されていません。</li>
       </ul>
@@ -132,3 +132,33 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+form {
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+}
+label {
+  display: block;
+}
+input {
+  width: 100%;
+  padding: .5em;
+  font: inherit;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.25em 0;
+}
+ul li {
+  font-size: 0.5em;
+}
+.validation-errors {
+  height: 32px;
+}
+.form-actions p {
+  font-size: 0.5em;
+}
+</style>
