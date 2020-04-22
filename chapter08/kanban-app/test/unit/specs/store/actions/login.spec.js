@@ -42,4 +42,23 @@ describe('loginアクション', () => {
       expect(commit.args[0][1].userId).to.equal(userId)
     })
   })
+
+  describe('Auth.loginが失敗', () => {
+    beforeEach(done => {
+      const login = authInfo => Promise.reject(new Error('login failed'))
+      const action = mockLoginAction(login)
+      commit = sinon.spy()
+
+      future = action({ commit })
+      future.catch(() => done())
+    })
+
+    it('失敗となること', done => {
+      expect(commit.called).to.equal(false)
+      future.catch(err => {
+        expect(err.message).to.equal('login failed')
+        done()
+      })
+    })
+  })
 })

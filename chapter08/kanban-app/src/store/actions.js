@@ -7,9 +7,7 @@ export default{
   login: ({commit}, authInfo) => {
     return Auth.login(authInfo)
       .then(({ token, userId }) => {
-        console.log(commit.called)
         commit(types.AUTH_LOGIN, { token, userId })
-        console.log(commit.called)
       })
       .catch(err => { throw err })
   },
